@@ -1,22 +1,29 @@
-parameters:
-- name: image
-  displayName: Pool Image
-  type: string
-  default: ubuntu-latest
-  values:
-  - windows-latest
-  - vs2017-win2016
-  - ubuntu-latest
-  - ubuntu-16.04
-  - macOS-latest
-  - macOS-10.14
+trigger:
+- master
 
-trigger: none
+pool:
+  vmImage: 'ubuntu-latest'
 
-jobs:
-- job: build
-  displayName: build
-  pool: 
-    vmImage: ${{ parameters.image }}
-  steps:
-    - script: echo building $(Build.BuildNumber) with ${{ parameters.image }}
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '0.12.9'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    backendType: 'azurerm'
+    backendServiceArm: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    backendAzureRmResourceGroupName: '$TFRG'
+    backendAzureRmStorageAccountName: '$TFSTORAGEACCOUNT'
+    backendAzureRmContainerName: '$TFCONTAINERNAME'
+    backendAzureRmKey: "$TFSANDBOXRMKEY"
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'plan'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
