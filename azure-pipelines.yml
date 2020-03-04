@@ -1,44 +1,22 @@
 parameters:
-- name: owner
-  displayName: Owner Name
+- name: image
+  displayName: Pool Image
   type: string
-  default: warren
+  default: ubuntu-latest
   values:
-  - saurabh
-  - stuart
-  - david
-  - warren
-  - Julio
-- name: Postgres # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-- name: Storage # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-- name: AKS # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-- name: DataLake # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-- name: ContainerRegistry # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-- name: VNET # name of the parameter; required
-  type: boolean # data type of the parameter; required
-  default: false
-trigger:
-- master
+  - windows-latest
+  - vs2017-win2016
+  - ubuntu-latest
+  - ubuntu-16.04
+  - macOS-latest
+  - macOS-10.14
 
-pool:
-  vmImage: 'ubuntu-latest'
-steps:
-- script: |
-    echo Owner=${{ parameters.owner }}
-    echo Tools to install ${{ parameters.Postgres }}
-    echo Tools to install ${{ parameters.Storage }}
-    echo Tools to install ${{ parameters.AKS }}
-    echo Tools to install ${{ parameters.DataLake }}
-    echo Tools to install ${{ parameters.ContainerRegistry }}
-    echo Tools to install ${{ parameters.VNET }}
-  displayName: 'Run a multi-line script'
+trigger: none
+
+jobs:
+- job: build
+  displayName: build
+  pool: 
+    vmImage: ${{ parameters.image }}
+  steps:
+    - script: echo building $(Build.BuildNumber) with ${{ parameters.image }}
