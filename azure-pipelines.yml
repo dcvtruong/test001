@@ -1,19 +1,44 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
+parameters:
+- name: owner
+  displayName: Owner Name
+  type: string
+  default: warren
+  values:
+  - saurabh
+  - stuart
+  - david
+  - warren
+  - Julio
+- name: Postgres # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: Storage # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: AKS # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: DataLake # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: ContainerRegistry # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: VNET # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Owner=$OWNER
-    echo See https://aka.ms/yaml
+    echo Owner=${{ parameters.owner }}
+    echo Tools to install ${{ parameters.Postgres }}
+    echo Tools to install ${{ parameters.Storage }}
+    echo Tools to install ${{ parameters.AKS }}
+    echo Tools to install ${{ parameters.DataLake }}
+    echo Tools to install ${{ parameters.ContainerRegistry }}
+    echo Tools to install ${{ parameters.VNET }}
   displayName: 'Run a multi-line script'
