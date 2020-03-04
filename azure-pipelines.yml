@@ -32,7 +32,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
+steps:
 - script: |
     echo Owner=${{ parameters.owner }}
     echo Tools to install ${{ parameters.Postgres }}
