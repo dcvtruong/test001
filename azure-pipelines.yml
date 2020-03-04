@@ -4,6 +4,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+steps:
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: '0.12.9'
@@ -23,7 +24,7 @@ pool:
     command: 'plan'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
 
-- task: TerraformCLI@0
-  inputs:
-    command: 'apply'
-    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+# - task: TerraformCLI@0
+#   inputs:
+#     command: 'apply'
+#     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
