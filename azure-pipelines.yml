@@ -14,17 +14,17 @@ steps:
     command: 'init'
     backendType: 'azurerm'
     backendServiceArm: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-    backendAzureRmResourceGroupName: '$TFRG'
-    backendAzureRmStorageAccountName: '$TFSTORAGEACCOUNT'
-    backendAzureRmContainerName: '$TFCONTAINERNAME'
-    backendAzureRmKey: "$TFSANDBOXRMKEY"
+    backendAzureRmResourceGroupName: $(TFRG)
+    backendAzureRmStorageAccountName: $(TFSTORAGEACCOUNT)
+    backendAzureRmContainerName: $(TFCONTAINERNAME)
+    backendAzureRmKey: $(TFSANDBOXRMKEY)
 
 - task: TerraformCLI@0
   inputs:
     command: 'plan'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
 
-# - task: TerraformCLI@0
-#   inputs:
-#     command: 'apply'
-#     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
