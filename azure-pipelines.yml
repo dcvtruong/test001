@@ -17,7 +17,7 @@ steps:
     backendAzureRmResourceGroupName: $(TFRG)
     backendAzureRmStorageAccountName: $(TFSTORAGEACCOUNT)
     backendAzureRmContainerName: $(TFCONTAINERNAME)
-    backendAzureRmKey: $(TFSANDBOXRMKEY)
+    backendAzureRmKey: sandbox.$(TEAM_NAME).tfstate
 
 - task: TerraformCLI@0
   inputs:
