@@ -1,3 +1,7 @@
+variable "service_principal" {
+  type = map(string)
+}
+
 provider "azurerm" {
   version         = ">= 2.0"
   features {}
