@@ -1,8 +1,8 @@
 trigger:
-- master
+- none
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'test'
 
 steps:
 - task: TerraformInstaller@0
