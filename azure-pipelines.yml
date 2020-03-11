@@ -20,10 +20,10 @@ steps:
     backendAzureRmContainerName: $(TF_CONTAINER_NAME)
     backendAzureRmKey: sandbox.$(OWNER_NAME).tfstate
   env:
-    CLIENT_ID: $(CLIENT_ID)
-    CLIENT_SECRET: $(CLIENT_SECRET)
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
+    ARM_CLIENT_ID: $(CLIENT_ID)
+    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
+    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    ARM_TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Init'
 
 - task: TerraformCLI@0
@@ -32,10 +32,10 @@ steps:
     environmentServiceName: 'AgileHub-Ark-Dev (ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     commandOptions: '-var "OWNER=$OWNER_NAME" -var "enable_storage=$enable_storage" -var "enable_postgresql=$enable_postgresql" -var "enable_container_registry=$enable_container_registry"'
   env:
-    CLIENT_ID: $(CLIENT_ID)
-    CLIENT_SECRET: $(CLIENT_SECRET)
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
+    ARM_CLIENT_ID: $(CLIENT_ID)
+    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
+    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    ARM_TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Plan'
 
 # - task: TerraformCLI@0
