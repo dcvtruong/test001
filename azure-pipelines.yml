@@ -14,15 +14,26 @@ steps:
     command: 'init'
     backendType: 'azurerm'
     backendServiceArm: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-    backendAzureRmResourceGroupName: $(TFRG)
-    backendAzureRmStorageAccountName: $(TFSTORAGEACCOUNT)
-    backendAzureRmContainerName: $(TFCONTAINERNAME)
-    backendAzureRmKey: sandbox.$(TEAM_NAME).tfstate
+    backendAzureRmResourceGroupName: $(TF_RG_NAME)
+    backendAzureRmStorageAccountName: $(TF_STORAGE_ACCOUNT_NAME)
+    backendAzureRmContainerName: $(TF_CONTAINER_NAME)
+    backendAzureRmKey: sandbox.$(OWNER_NAME).tfstate
+  env:
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_SECRET)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
 
 - task: TerraformCLI@0
   inputs:
     command: 'plan'
-    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    environmentServiceName: 'AgileHub-Ark-Dev (ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    commandOptions: '-var "OWNER=$OWNER_NAME" -var "enable_storage=$enable_storage" -var "enable_postgresql=$enable_postgresql" -var "enable_container_registry=$enable_container_registry"'
+  env:
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_SECRET)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
 
 # - task: TerraformCLI@0
 #   inputs:
