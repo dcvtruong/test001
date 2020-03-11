@@ -30,7 +30,7 @@ steps:
   inputs:
     command: 'plan'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-    commandOptions: '-var "OWNER=$OWNER_NAME" -var "enable_storage=$enable_storage" -var "enable_postgresql=$enable_postgresql" -var "enable_container_registry=$enable_container_registry"'
+    commandOptions: '-var "rg_name=$OWNER_NAME"'
   env:
     ARM_CLIENT_ID: $(CLIENT_ID)
     ARM_CLIENT_SECRET: $(CLIENT_SECRET)
@@ -38,8 +38,14 @@ steps:
     ARM_TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Plan'
 
-# - task: TerraformCLI@0
-#   inputs:
-#     command: 'apply'
-#     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-#.  displayName: 'Terraform Apply'
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    commandOptions: '-var "rg_name=$OWNER_NAME"'
+  env:
+    ARM_CLIENT_ID: $(CLIENT_ID)
+    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
+    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    ARM_TENANT_ID: $(TENANT_ID)
+.  displayName: 'Terraform Apply'
