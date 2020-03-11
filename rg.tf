@@ -3,7 +3,8 @@ provider "azurerm" {
 }
 
 variable "rg_name" {
-  rg_name = "ity-cc-cloud-sandbox"  
+  default = "ity-cc-cloud-sandbox"
+  type    = string
 }
 
 resource "azurerm_resource_group" "example" {
