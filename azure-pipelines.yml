@@ -8,6 +8,7 @@ steps:
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: '0.12.9'
+  displayName: 'Terraform Installation'
 
 - task: TerraformCLI@0
   inputs:
@@ -23,6 +24,7 @@ steps:
     CLIENT_SECRET: $(CLIENT_SECRET)
     SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
     TENANT_ID: $(TENANT_ID)
+  displayName: 'Terraform Init'
 
 - task: TerraformCLI@0
   inputs:
@@ -34,8 +36,10 @@ steps:
     CLIENT_SECRET: $(CLIENT_SECRET)
     SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
     TENANT_ID: $(TENANT_ID)
+  displayName: 'Terraform Plan'
 
 # - task: TerraformCLI@0
 #   inputs:
 #     command: 'apply'
 #     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+#.  displayName: 'Terraform Apply'
