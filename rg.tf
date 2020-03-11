@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "testResource001"
+  name     = "${var.rg_name}-rg"
   location = "West US"
 
   tags = {
