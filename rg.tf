@@ -7,7 +7,7 @@ variable "rg_name" {
 
 resource "azurerm_resource_group" "example" {
   name     = "${var.rg_name}-rg"
-  location = "West US"
+  location = "westeurope"
 
   tags = {
     environment = "Production"
