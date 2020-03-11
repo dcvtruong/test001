@@ -30,7 +30,7 @@ steps:
   inputs:
     command: 'plan'
     environmentServiceName: 'Sandbox'
-    commandOptions: '-var "rg_name=$OWNER_NAME1"'
+    commandOptions: '-var "rg_name=$OWNER_NAME"'
   env:
     ARM_CLIENT_ID: $(CLIENT_ID)
     ARM_CLIENT_SECRET: $(CLIENT_SECRET)
