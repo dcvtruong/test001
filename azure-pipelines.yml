@@ -1,6 +1,9 @@
 trigger:
 - none
 
+variables:
+- group: sbox_secret_keys
+
 pool:
   name: 'test'
 
