@@ -2,8 +2,8 @@ trigger:
 - none
 
 variables:
-- group: sbox_secret_keys
-- group: sbox_tfstates_keys
+- group: shell_secret_keys
+#- group: sbox_tfstates_keys
 
 pool:
   name: 'test'
@@ -24,10 +24,10 @@ steps:
     backendAzureRmContainerName: $(TF_CONTAINER_NAME)
     backendAzureRmKey: sandbox.$(OWNER_NAME).tfstate
   env:
-    ARM_CLIENT_ID: $(CLIENT_ID)
-    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
-    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    ARM_TENANT_ID: $(TENANT_ID)
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_CERTIFICATE_PATH)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Init'
 
 - task: TerraformCLI@0
@@ -36,10 +36,10 @@ steps:
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     commandOptions: '-var "rg_name=$(OWNER_NAME)"'
   env:
-    ARM_CLIENT_ID: $(CLIENT_ID)
-    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
-    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    ARM_TENANT_ID: $(TENANT_ID)
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_CERTIFICATE_PATH: $(CLIENT_CERTIFICATE_PATH)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Plan'
 
 - task: TerraformCLI@0
@@ -48,8 +48,8 @@ steps:
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     commandOptions: '-var "rg_name=$(OWNER_NAME)"'
   env:
-    ARM_CLIENT_ID: $(CLIENT_ID)
-    ARM_CLIENT_SECRET: $(CLIENT_SECRET)
-    ARM_SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    ARM_TENANT_ID: $(TENANT_ID)
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_CERTIFICATE_PATH: $(CLIENT_CERTIFICATE_PATH)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Apply'
