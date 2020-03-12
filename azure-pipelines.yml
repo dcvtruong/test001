@@ -3,6 +3,7 @@ trigger:
 
 variables:
 - group: sbox_secret_keys
+- group: sbox_tfstates_keys
 
 pool:
   name: 'test'
