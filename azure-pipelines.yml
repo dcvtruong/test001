@@ -18,7 +18,7 @@ steps:
   inputs:
     command: 'init'
     backendType: 'azurerm'
-    backendServiceArm: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    backendServiceArm: 'Sandbox'
     backendAzureRmResourceGroupName: $(TF_RG_NAME)
     backendAzureRmStorageAccountName: $(TF_STORAGE_ACCOUNT_NAME)
     backendAzureRmContainerName: $(TF_CONTAINER_NAME)
@@ -33,7 +33,7 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'plan'
-    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    environmentServiceName: 'Sandbox'
   env:
     CLIENT_ID: $(CLIENT_ID)
     CLIENT_SECRET: $(CLIENT_SECRET)
@@ -44,7 +44,7 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'apply'
-    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    environmentServiceName: 'Sandbox'
   env:
     CLIENT_ID: $(CLIENT_ID)
     CLIENT_SECRET: $(CLIENT_SECRET)
@@ -54,7 +54,7 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'destroy'
-    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+    environmentServiceName: 'Sandbox'
   env:
     CLIENT_ID: $(CLIENT_ID)
     CLIENT_SECRET: $(CLIENT_SECRET)
