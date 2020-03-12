@@ -17,7 +17,7 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'init'
-    backendType: 'azurerm'
+    # backendType: 'azurerm'
     # backendServiceArm: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     # backendAzureRmResourceGroupName: $(TF_RG_NAME)
     # backendAzureRmStorageAccountName: $(TF_STORAGE_ACCOUNT_NAME)
