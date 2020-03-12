@@ -51,13 +51,3 @@ steps:
     SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
     TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Apply'
-- task: TerraformCLI@0
-  inputs:
-    command: 'destroy'
-    environmentServiceName: 'Sandbox'
-  env:
-    CLIENT_ID: $(CLIENT_ID)
-    CLIENT_SECRET: $(CLIENT_SECRET)
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
-  displayName: 'Terraform Destroy'
