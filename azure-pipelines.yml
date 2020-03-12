@@ -21,7 +21,7 @@ steps:
     backendAzureRmResourceGroupName: $(TF_RG_NAME)
     backendAzureRmStorageAccountName: $(TF_STORAGE_ACCOUNT_NAME)
     backendAzureRmContainerName: $(TF_CONTAINER_NAME)
-    backendAzureRmKey: sandbox.$(OWNER_NAME).tfstate
+    backendAzureRmKey: $(OWNER_NAME).tfstate
   env:
     CLIENT_ID: $(CLIENT_ID)
     CLIENT_SECRET: $(CLIENT_SECRET)
@@ -33,7 +33,6 @@ steps:
   inputs:
     command: 'plan'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-    commandOptions: '-var "OWNER=$(OWNER_NAME)"'
   env:
     CLIENT_ID: $(CLIENT_ID)
     CLIENT_SECRET: $(CLIENT_SECRET)
@@ -41,8 +40,23 @@ steps:
     TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Plan'
 
-# - task: TerraformCLI@0
-#   inputs:
-#     command: 'apply'
-#     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
-#.  displayName: 'Terraform Apply'
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+  env:
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_SECRET)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
+  displayName: 'Terraform Apply'
+- task: TerraformCLI@0
+  inputs:
+    command: 'destroy'
+    environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
+  env:
+    CLIENT_ID: $(CLIENT_ID)
+    CLIENT_SECRET: $(CLIENT_SECRET)
+    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    TENANT_ID: $(TENANT_ID)
+  displayName: 'Terraform Destroy'
