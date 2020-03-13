@@ -23,11 +23,11 @@ steps:
     # backendAzureRmStorageAccountName: $(TF_STORAGE_ACCOUNT_NAME)
     # backendAzureRmContainerName: $(TF_CONTAINER_NAME)
     # backendAzureRmKey: sandbox.$(OWNER_NAME).tfstate
-  env:
-    CLIENT_ID: $(CLIENT_ID)
-    #CLIENT_CERTIFICATE_PATH: $(AGENT_TEMPDIRECTORY)/shell-36-eun-kv-bnxknlrs-AZ-AS-GRP-SEQ00035-Contributor-20200217.pfx
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
+  # env:
+  #   CLIENT_ID: $(CLIENT_ID)
+  #   #CLIENT_CERTIFICATE_PATH: $(AGENT_TEMPDIRECTORY)/shell-36-eun-kv-bnxknlrs-AZ-AS-GRP-SEQ00035-Contributor-20200217.pfx
+  #   SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+  #   TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Init'
 
 - task: TerraformCLI@0
@@ -35,11 +35,11 @@ steps:
     command: 'plan'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     commandOptions: '-var "rg_name=$(OWNER_NAME)"'
-  env:
-    CLIENT_ID: $(CLIENT_ID)
+  #env:
+    #CLIENT_ID: $(CLIENT_ID)
     #CLIENT_CERTIFICATE_PATH: $(AGENT_TEMPDIRECTORY)/shell-36-eun-kv-bnxknlrs-AZ-AS-GRP-SEQ00035-Contributor-20200217.pfx
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
+    #SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    #TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Plan'
 
 - task: TerraformCLI@0
@@ -47,9 +47,9 @@ steps:
     command: 'apply'
     environmentServiceName: 'AgileHub-Ark-Dev(ae1cfcb2-2928-405d-afd3-743efe4dddd8)'
     commandOptions: '-var "rg_name=$(OWNER_NAME)"'
-  env:
-    CLIENT_ID: $(CLIENT_ID)
+  #env:
+    #CLIENT_ID: $(CLIENT_ID)
     #CLIENT_CERTIFICATE_PATH: $(AGENT_TEMPDIRECTORY)/shell-36-eun-kv-bnxknlrs-AZ-AS-GRP-SEQ00035-Contributor-20200217.pfx
-    SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
-    TENANT_ID: $(TENANT_ID)
+    #SUBSCRIPTION_ID: $(SUBSCRIPTION_ID)
+    #TENANT_ID: $(TENANT_ID)
   displayName: 'Terraform Apply'
